@@ -9,9 +9,23 @@ import SwiftUI
 
 @main
 struct BudgiApp: App {
+    @State private var showSplashScreen = true
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if showSplashScreen {
+                SplashScreenView()
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            withAnimation {
+                                showSplashScreen = false
+                            }
+                        }
+                    }
+            } else {
+                ContentView()
+                    .environmentObject(DashboardViewModel())
+            }
         }
     }
 }

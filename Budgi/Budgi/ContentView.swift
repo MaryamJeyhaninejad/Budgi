@@ -27,7 +27,8 @@ struct ContentView: View {
                         Text("Balance")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
-                        Text("\(dashboardViewModel.balance, specifier: "%.2f")€")                            .font(.headline)
+                        Text("\(dashboardViewModel.balance, specifier: "%.2f")€")
+                            .font(.headline)
                             .fontWeight(.bold)
                             .foregroundColor(.primary)
                     }
@@ -60,7 +61,8 @@ struct ContentView: View {
                     .frame(maxWidth: .infinity)
                 }
                 .padding(10)
-                .background(Color(red: 0.81, green: 0.82, blue: 0.94))                        .cornerRadius(12)
+                .background(Color(red: 0.81, green: 0.82, blue: 0.94))
+                .cornerRadius(12)
                 .frame(maxHeight:100)
                 .padding(.horizontal, 15)
                 
@@ -87,21 +89,21 @@ struct ContentView: View {
 
 struct MemojiCard: View {
     var maryam : String
-
+    
     var body: some View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 15)
                     .fill(Color(UIColor.systemGray6))
-
+                
                 Image(maryam)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100, height: 100)
             }
-
-           // Button(action: {
-             //   print("Button tapped")
+            
+            // Button(action: {
+            //   print("Button tapped")
             NavigationLink(destination: Newexpense()) {
                 Image(systemName: "plus")
                     .resizable()
@@ -110,72 +112,74 @@ struct MemojiCard: View {
                     .foregroundColor(.white)
             }
             .frame(width: 30, height: 30)
-            .background(Color .buttonColor)             .clipShape(Circle())
+            .background(Color .buttonColor)
+            .clipShape(Circle())
             .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             .padding(.top, 10)
         }
     }
 }
-            struct CustomTabBar: View {
-                @State private var selectedTab: String = "Dashboard"
-                
-                var body: some View {
-                    HStack {
-                        Spacer()
-                        TabBarItem(
-                                        title: "Dashboard",
-                                        systemImageName: "house.fill",
-                                        isSelected: selectedTab == "Dashboard", // Check if this tab is selected
-                                        onTap: { selectedTab = "Dashboard" } // Update selectedTab on tap
-                                    )
-                                    Spacer()
-                                    TabBarItem(
-                                        title: "Report",
-                                        systemImageName: "doc.text",
-                                        isSelected: selectedTab == "Report",
-                                        onTap: { selectedTab = "Report" }
-                                    )
-                                    Spacer()
-                                    TabBarItem(
-                                        title: "Saving",
-                                        systemImageName: "archivebox.fill",
-                                        isSelected: selectedTab == "Saving",
-                                        onTap: { selectedTab = "Saving" }
-                                    )
-                                    Spacer()
-                                    TabBarItem(
-                                        title: "Settings",
-                                        systemImageName: "gearshape.fill",
-                                        isSelected: selectedTab == "Settings",
-                                        onTap: { selectedTab = "Settings" }
-                                    )
-                        Spacer()
-                    }
-                    .frame(height: 60)
-                    .background(Color(UIColor.systemGray6))
-                }
-            }
+struct CustomTabBar: View {
+    @State private var selectedTab: String = "Dashboard"
+    
+    var body: some View {
+        HStack {
+            Spacer()
+            
+            TabBarItem(
+                title: "Dashboard",
+                systemImageName: "house.fill",
+                isSelected: selectedTab == "Dashboard", // Check if this tab is selected
+                onTap: { selectedTab = "Dashboard" } // Update selectedTab on tap
+            )
+            Spacer()
+            TabBarItem(
+                title: "Report",
+                systemImageName: "doc.text",
+                isSelected: selectedTab == "Report",
+                onTap: { selectedTab = "Report" }
+            )
+            Spacer()
+            TabBarItem(
+                title: "Saving",
+                systemImageName: "archivebox.fill",
+                isSelected: selectedTab == "Saving",
+                onTap: { selectedTab = "Saving" }
+            )
+            Spacer()
+            TabBarItem(
+                title: "Settings",
+                systemImageName: "gearshape.fill",
+                isSelected: selectedTab == "Settings",
+                onTap: { selectedTab = "Settings" }
+            )
+            Spacer()
+        }
+        .frame(height: 60)
+        .background(Color(UIColor.systemGray6))
+    }
+}
 
-            struct TabBarItem: View {
-                let title: String
-                let systemImageName: String
-                let isSelected: Bool
-                let onTap: () -> Void
-                var body: some View {
-                    VStack {
-                        Image(systemName: systemImageName)
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .foregroundColor(isSelected ? .buttonColor : .primary)
-                        Text(title)
-                            .font(.caption)
-                            .foregroundColor(isSelected ? .buttonColor : .primary)
-                    }
-                    .onTapGesture {
-                                onTap()
-                            }
-                }
-            }
+struct TabBarItem: View {
+    let title: String
+    let systemImageName: String
+    let isSelected: Bool
+    let onTap: () -> Void
+    var body: some View {
+        VStack {
+            Image(systemName: systemImageName)
+                .resizable()
+                .frame(width: 20, height: 20)
+                .foregroundColor(isSelected ? .buttonColor : .primary)
+            Text(title)
+                .font(.caption)
+                .foregroundColor(isSelected ? .buttonColor : .primary)
+        }
+        .onTapGesture {
+            onTap()
+        }
+    }
+}
 
 struct CalendarView: View {
     var body: some View {
@@ -199,7 +203,7 @@ struct CalendarView: View {
                 }
             }
             .padding(.horizontal)
-
+            
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7), spacing: 10) {
                 ForEach(["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"], id: \.self) { day in
                     Text(day)
